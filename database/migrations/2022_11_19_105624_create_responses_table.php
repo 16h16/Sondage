@@ -16,6 +16,9 @@ return new class extends Migration
         Schema::create('responses', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('title', 255);
+            $table->integer('count');
+            $table->foreignId('surveys_id')->constrained()->onDelete('cascade');
         });
     }
 
