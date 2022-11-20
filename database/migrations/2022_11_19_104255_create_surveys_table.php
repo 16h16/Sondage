@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->char('owner', 20);
             $table->string('question',255);
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
     }
 

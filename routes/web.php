@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SurveysController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,7 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+route::get('/home', [HomeController::class, 'index'])->name('home');
 route::get('/', [HomeController::class, 'index'])->name('home');
+route::get('/reset-passwords', [HomeController::class, 'passwordReset'])->name('reset.passwords');
+route::get('/new-survey', [SurveysController::class, 'create'])->name('survey.create');
+
 
 
 

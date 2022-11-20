@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Responses\Responses;
+use App\Models\Surveys\Surveys;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -41,4 +43,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function responses(){
+        return $this->hasMany(Responses::class);
+    }
+
+    public function surveys(){
+        return $this->hasMany(Surveys::class);
+    }
 }

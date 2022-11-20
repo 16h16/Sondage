@@ -24,7 +24,7 @@ class SurveysController extends Controller
      */
     public function create()
     {
-        //
+        return view('survey.create');
     }
 
     /**

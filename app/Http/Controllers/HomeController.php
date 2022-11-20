@@ -8,6 +8,10 @@ class HomeController extends Controller
 {
 
     public function index(){
-        return view('welcome');
+        return view('home');
+    }
+
+    public function passwordReset(){
+        return view('auth.reset-password');
     }
 }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('title', 255);
             $table->integer('count');
             $table->foreignId('surveys_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
     }
 
