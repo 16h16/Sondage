@@ -11,6 +11,8 @@ class Responses extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['title', 'user_id', 'surveys_id', 'count'];
+
     public function surveys(){
         return $this->belongsTo(Surveys::class);
     }

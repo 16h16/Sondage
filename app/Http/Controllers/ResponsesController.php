@@ -35,7 +35,14 @@ class ResponsesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Responses::create([
+            'title' => $request->title,
+            'count' => $request->count,
+            'user_id' => auth()->user()->id,
+            'surveys_id' => $request->surveys_id,
+        ]);
+
+        return to_route('survey.index');
     }
 
     /**

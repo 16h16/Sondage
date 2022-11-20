@@ -6,7 +6,7 @@
         <title> @yield('title') </title>
     </head>
 
-    <body>
+    <body style="background-color: #4a5568">
         @yield('content')
     </body>
 </html>

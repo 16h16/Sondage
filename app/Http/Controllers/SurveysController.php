@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Surveys;
+use App\Models\Responses\Responses;
 use Illuminate\Http\Request;
 
 class SurveysController extends Controller
@@ -14,17 +15,9 @@ class SurveysController extends Controller
      */
     public function index()
     {
-        return view('');
-    }
+        $surveys = Surveys::where('owner', '=', auth()->user()->name)->get();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('survey.create');
+        return view('survey.index',['surveys'=>$surveys]);
     }
 
     /**
@@ -43,7 +36,7 @@ class SurveysController extends Controller
             "question" =>  $request -> question,
         ]);
 
-        return to_route('home');
+        return to_route('survey.index');
     }
 
     /**
@@ -86,8 +79,10 @@ class SurveysController extends Controller
      * @param  \App\Models\Surveys  $surveys
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Surveys $surveys)
+    public function destroy(Surveys $survey)
     {
-        //
+        $survey -> delete();
+        return to_route('survey.index');
+
     }
 }

@@ -7,7 +7,7 @@
 @section('content')
     <style>
         #menu{
-            background-color:black;
+            background-color: #cccccc;
             padding:5px;
             display: inline-block;
             border-radius: 5px;
@@ -37,24 +37,45 @@
             <ul>
                     @auth
                         <li class="menu_puce">
-                            <form style="display:inline">
-                                <input type="text">
-                                <button> Search </button>
+                            <form style="display:inline; background-color: #4e5662; border-radius: 10px">
+                                <input type="text" style="border-radius: 10px; border-right: 0px; border:3px solid white; background-color: #9b9b9b">
+                                <button style="background-color: rgba(25,255,0,0); border:0px; color: white"> Search </button>
                             </form>
                         </li>
-                        <li class="menu_puce" style="background-color:green;"><a href="">New survey</a></li>
                         <li class="menu_puce"><a href="{{route('survey.index')}}">My surveys</a></li>
-                        <li class="menu_puce" style="background-color:silver;">Username</li>
-                        <li class="menu_puce"><a href="{{route('reset.passwords')}}">Change password</a></li>
+                        <li class="menu_puce" style="background-color:blue; color:white;">{{auth()->user()->name}}</li>
                         <li class="menu_puce" style="background-color:red">
                             <form action="{{ route('logout') }}" method="POST" style="display:inline">
                                 @csrf
                                 <button style="border:0px;background-color:red"> Logout </button>
                             </form>
                         </li>
+
+                        <!-- =============== SURVEYS ============== -->
+                        <h1> Surveys </h1>
+                        <ul style="list-style-type: none">
+                            @foreach($surveys as $survey)
+                                <p> <br> </p>
+                                <li><h3>{{ $survey -> question }}</li></h3>
+                                    <ul style="list-style-type: none">
+                                        <br>
+                                        @foreach($survey->responses as $response)
+                                            <li> {{ $response->title }} <a href="#"><button style="background-color:green; color:white; border:1px solid green; border-radius: 5px"> {{$response->count}} ✓ </button></a> </li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+                            <br>
+                                <li> Owner <span style="background-color: blue; border:0px; color: white; padding: 3px; border-radius: 5px">{{$survey -> owner }}</span></li>
+                                <p> <br> <hr> </p>
+                            @endforeach
+                        </ul>
+                        <!-- ====================================== -->
                     @else
-                        <li class="menu_puce"><a href="{{ route('login') }}">Log in</a></li>
-                        <li class="menu_puce"><a href="{{ route('register') }}">Register</a></li>
+                        <h1> Welcom to survey </h1>
+                        <li class="menu_puce">
+                            <a href="{{ route('login') }}"><button style="background-color: rgba(25,255,0,0); border:0px">Connection</button></a>
+                        </li>
+                    <li class="menu_puce"><a href="{{ route('register') }}"><button style="background-color: rgba(25,255,0,0); border:0px">Registration</button></a></li>
                     @endauth
             </ul>
         </div>
