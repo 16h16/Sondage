@@ -14,7 +14,7 @@ class SurveysController extends Controller
      */
     public function index()
     {
-        //
+        return view('');
     }
 
     /**
@@ -35,7 +35,15 @@ class SurveysController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+        Surveys::create([
+            "owner" => auth()->user()->name,
+            "user_id" => auth()->user()->id,
+            "question" =>  $request -> question,
+        ]);
+
+        return to_route('home');
     }
 
     /**

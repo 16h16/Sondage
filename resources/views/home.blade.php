@@ -43,7 +43,7 @@
                             </form>
                         </li>
                         <li class="menu_puce" style="background-color:green;"><a href="">New survey</a></li>
-                        <li class="menu_puce"><a href="">My surveys</a></li>
+                        <li class="menu_puce"><a href="{{route('survey.index')}}">My surveys</a></li>
                         <li class="menu_puce" style="background-color:silver;">Username</li>
                         <li class="menu_puce"><a href="{{route('reset.passwords')}}">Change password</a></li>
                         <li class="menu_puce" style="background-color:red">

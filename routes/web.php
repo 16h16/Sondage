@@ -18,7 +18,10 @@ use Illuminate\Support\Facades\Route;
 route::get('/home', [HomeController::class, 'index'])->name('home');
 route::get('/', [HomeController::class, 'index'])->name('home');
 route::get('/reset-passwords', [HomeController::class, 'passwordReset'])->name('reset.passwords');
-route::get('/new-survey', [SurveysController::class, 'create'])->name('survey.create');
+
+route::get('/surveys', [SurveysController::class, 'index'])->name('survey.index');
+route::get('/survey-new', [SurveysController::class, 'create'])->name('survey.create');
+route::post('/survey-store', [SurveysController::class, 'store'])->name('survey.store');
 
 
 

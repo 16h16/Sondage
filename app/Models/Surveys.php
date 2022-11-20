@@ -11,6 +11,9 @@ class Surveys extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['question', 'owner', 'user_id'];
+    //protected $guarded = [];
+
     public function responses(){
         return $this->hasMany(Responses::class);
     }
@@ -18,4 +21,6 @@ class Surveys extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+
 }
