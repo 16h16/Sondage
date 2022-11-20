@@ -36,9 +36,9 @@
         <div id="menu">
             <ul>
                     @auth
-                        <li class="menu_puce">
+                        <li class="menu_puce" style="background-color: rgba(255,0,0,0);">
                             <form style="display:inline; background-color: #4e5662; border-radius: 10px">
-                                <input type="text" style="border-radius: 10px; border-right: 0px; border:3px solid white; background-color: #9b9b9b">
+                                <input type="text" style="border-radius: 10px; border-right: 0px; border:3px solid #cccccc; background-color: #9b9b9b">
                                 <button style="background-color: rgba(25,255,0,0); border:0px; color: white"> Search </button>
                             </form>
                         </li>
@@ -47,7 +47,7 @@
                         <li class="menu_puce" style="background-color:red">
                             <form action="{{ route('logout') }}" method="POST" style="display:inline">
                                 @csrf
-                                <button style="border:0px;background-color:red"> Logout </button>
+                                <button style="border:0px;background-color:red; color:white"> Logout </button>
                             </form>
                         </li>
 
@@ -60,7 +60,13 @@
                                     <ul style="list-style-type: none">
                                         <br>
                                         @foreach($survey->responses as $response)
-                                            <li> {{ $response->title }} <a href="#"><button style="background-color:green; color:white; border:1px solid green; border-radius: 5px"> {{$response->count}} ✓ </button></a> </li>
+                                            <li> {{ $response->title }}
+                                                <form style="display: inline-block" action="{{route('response.vote')}}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{$response->id}}">
+                                                    <button style="background-color:green; color:white; border:1px solid green; border-radius: 5px"> {{$response->count}} 👍 </button>
+                                                </form>
+                                            </li>
                                         @endforeach
                                     </ul>
                                 </li>

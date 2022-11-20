@@ -29,6 +29,7 @@ route::get('/survey-delete/{survey}', [SurveysController::class,'destroy'])->nam
 
 // RESPONSES
 route::post('/responses-new', [ResponsesController::class, 'store'])->name('response.store');
+route::post('/responses-vote', [ResponsesController::class, 'vote'])->name('response.vote');
 
 
 

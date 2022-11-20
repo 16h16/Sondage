@@ -89,4 +89,14 @@ class ResponsesController extends Controller
     {
         //
     }
+
+    public function vote(Request $request)
+    {
+        $response = Responses::findOrFail($request->id);
+
+        $response-> update([
+            "count" => $response->count+1,
+        ]);
+        return to_route('home');
+}
 }
