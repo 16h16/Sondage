@@ -54,27 +54,29 @@
                         <!-- =============== SURVEYS ============== -->
                         <h1> Surveys </h1>
                         <ul style="list-style-type: none">
-                            @foreach($surveys as $survey)
-                                <p> <br> </p>
-                                <li><h3>{{ $survey -> question }}</li></h3>
+                            @for($i=0; $i<count($surveys); $i++)
+                                <p><br> </p>
+                                <li><h3>{{ $surveys[$i]-> question }}</li></h3>
                                     <ul style="list-style-type: none">
                                         <br>
-                                        @foreach($survey->responses as $response)
-                                            <li> {{ $response->title }}
+                                        @for($e = 0; $e < count($surveys[$i]->responses); $e++)
+                                            <li> {{ $surveys[$i]->responses[$e]->title }}
                                                 <form style="display: inline-block" action="{{route('response.vote')}}" method="POST">
                                                     @csrf
-                                                    <input type="hidden" name="id" value="{{$response->id}}">
-                                                    <button style="background-color:green; color:white; border:1px solid green; border-radius: 5px"> {{$response->count}} 👍 </button>
+                                                    <input type="hidden" name="id" value="{{$surveys[$i]->responses[$e]->id}}">
+                                                    <progress max="100" value="{{$pourcent[$i][$e]}}"></progress> {{$pourcent[$i][$e]}}% ({{$surveys[$i]->responses[$e]->count}} Votes )
+                                                    <button style="background-color:green; color:white; border:1px solid green; border-radius: 5px"> + </button>
                                                 </form>
                                             </li>
-                                        @endforeach
+                                        @endfor
                                     </ul>
                                 </li>
                             <br>
-                                <li> Owner <span style="background-color: blue; border:0px; color: white; padding: 3px; border-radius: 5px">{{$survey -> owner }}</span></li>
+                                <li> Owner <span style="background-color: blue; border:0px; color: white; padding: 3px; border-radius: 5px">{{$surveys[$i]-> owner }}</span></li>
                                 <p> <br> <hr> </p>
-                            @endforeach
+                            @endfor
                         </ul>
+
                         <!-- ====================================== -->
                     @else
                         <h1> Welcom to survey </h1>
