@@ -42,7 +42,7 @@ class ResponsesController extends Controller
             'surveys_id' => $request->surveys_id,
         ]);
 
-        return to_route('survey.index');
+        return to_route('survey.index', ["message"=>"Réponse au sondage ajouté!","color"=>"green"]);
     }
 
     /**
@@ -97,6 +97,6 @@ class ResponsesController extends Controller
         $response-> update([
             "count" => $response->count+1,
         ]);
-        return to_route('home');
+        return to_route('vote', ["message"=>"Vote comptabilisé!","color"=>"green"]);
 }
 }

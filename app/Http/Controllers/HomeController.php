@@ -23,8 +23,8 @@ class HomeController extends Controller
         return $tab;
     }
 
-    public function countTotal(){
-        $tab = $this->allCounts($this->getSurveys());
+    public function countTotal($surveys){
+        $tab = $this->allCounts($surveys);
         $total = 0;
         for($i = 0; $i < count($tab); $i++){
             for($e=0; $e < count($tab[$i]); $e++){
@@ -39,8 +39,8 @@ class HomeController extends Controller
         return $tab;
     }
 
-    public function countPourcent(){
-        $tab = $this->countTotal();
+    public function countPourcent($surveys){
+        $tab = $this->countTotal($surveys);
         for($i = 0; $i < count($tab); $i++){
             for($e=0; $e < count($tab[$i]); $e++){
                 if($tab[$i][count($tab[$i])-1] != 0){
@@ -57,20 +57,20 @@ class HomeController extends Controller
         return $tab;
     }
 
-    public function index(){
-        //dd($this->countPourcent());
-        //dd($this->getSurveys());
-        return view('home',['surveys'=>$this->getSurveys(), "pourcent"=>$this->countPourcent()]);
+    public function index($message='', $color=''){
+        return view('home',['surveys'=>$this->getSurveys(), "message"=>$message, "color"=> $color, "pourcent"=>$this->countPourcent($this->getSurveys())]);
     }
 
+   public function search(Request $request){
+       $surveys = Surveys::where('question','like','%'.$request->survey_question.'%')->get();
 
-
-    public function pourcentVote(){
-        $surveys = Surveys::all();
-
-    }
-
-    public function test(){
-        echo "ok";
-    }
+       if(!empty($surveys[0])){
+        $message = "Sondage trouvé!";
+        $color = "green";
+       }else{
+           $message = "Sondage introuvable!";
+           $color = "red";
+       }
+       return view('home',['surveys'=>$surveys, "pourcent"=>$this->countPourcent($surveys), "message"=>$message, "color"=> $color]);
+   }
 }

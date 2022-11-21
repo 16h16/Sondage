@@ -8,7 +8,11 @@
     <div style="text-align: center;">
         <div style="background-color:#d5d5d5; display: inline-block; border-radius: 10px;padding:20px;">
             <div style="display: inline-block; background-color: blue; padding: 10px; width: 20px; color: white; border-radius: 10px"><a style="color: white; text-decoration: none"href="{{route('home')}}">⮐</a></div>
-            <h1> My surveys</h1>
+            <h1> Mes sondages</h1>
+            @if(!empty($message))
+                <p style="background-color: {{$color}}; color: white; padding:5px; border-radius: 5px"> {{$message}} </p>
+            @endif
+
             <ul style="list-style-type: none;margin:0px; padding: 0px;">
                 @foreach($surveys as $survey)
                     <p> <br> </p>

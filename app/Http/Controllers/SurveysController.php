@@ -13,11 +13,10 @@ class SurveysController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($message='', $color='')
     {
         $surveys = Surveys::where('owner', '=', auth()->user()->name)->get();
-
-        return view('survey.index',['surveys'=>$surveys]);
+        return view('survey.index',['surveys'=>$surveys, 'message'=>$message, 'color'=>$color]);
     }
 
     /**
@@ -28,15 +27,12 @@ class SurveysController extends Controller
      */
     public function store(Request $request)
     {
-
-
         Surveys::create([
             "owner" => auth()->user()->name,
             "user_id" => auth()->user()->id,
             "question" =>  $request -> question,
         ]);
-
-        return to_route('survey.index');
+        return to_route('survey.index', ["message"=>"Sondage crée!","color"=>"green"]);
     }
 
     /**
@@ -82,7 +78,7 @@ class SurveysController extends Controller
     public function destroy(Surveys $survey)
     {
         $survey -> delete();
-        return to_route('survey.index');
+        return to_route('survey.index', ["message"=>"Sondage supprimé!","color"=>"red"]);
 
     }
 }

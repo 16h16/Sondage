@@ -19,13 +19,14 @@ use Illuminate\Support\Facades\Route;
 // HOME
 route::get('/home', [HomeController::class, 'index'])->name('home');
 route::get('/', [HomeController::class, 'index'])->name('home');
+route::get('/vote/{message?}/{color?}', [HomeController::class, 'index'])->name('vote');
 route::get('/reset-passwords', [HomeController::class, 'passwordReset'])->name('reset.passwords');
+route::get('/surveys-search', [HomeController::class, 'search'])->name('home.search');
 
 // SURVEYS
-route::get('/surveys', [SurveysController::class, 'index'])->name('survey.index');
+route::get('/surveys/{message?}/{color?}', [SurveysController::class, 'index'])->name('survey.index');
 route::post('/survey-store', [SurveysController::class, 'store'])->name('survey.store');
 route::get('/survey-delete/{survey}', [SurveysController::class,'destroy'])->name('survey.delete');
-
 
 // RESPONSES
 route::post('/responses-new', [ResponsesController::class, 'store'])->name('response.store');

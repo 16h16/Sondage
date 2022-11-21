@@ -37,22 +37,27 @@
             <ul>
                     @auth
                         <li class="menu_puce" style="background-color: rgba(255,0,0,0);">
-                            <form style="display:inline; background-color: #4e5662; border-radius: 10px">
-                                <input type="text" style="border-radius: 10px; border-right: 0px; border:3px solid #cccccc; background-color: #9b9b9b">
-                                <button style="background-color: rgba(25,255,0,0); border:0px; color: white"> Search </button>
+                            <form style="display:inline; background-color: #4e5662; border-radius: 10px" action="{{route('home.search')}}" method="GET">
+                                <input type="text" style="border-radius: 10px; border-right: 0px; border:3px solid #cccccc; background-color: #9b9b9b" name="survey_question">
+                                <button style="background-color: rgba(25,255,0,0); border:0px; color: white"> Recherche </button>
                             </form>
                         </li>
-                        <li class="menu_puce"><a href="{{route('survey.index')}}">My surveys</a></li>
+                        <li class="menu_puce"><a href="{{route('survey.index')}}">Mes sondages</a></li>
                         <li class="menu_puce" style="background-color:blue; color:white;">{{auth()->user()->name}}</li>
                         <li class="menu_puce" style="background-color:red">
                             <form action="{{ route('logout') }}" method="POST" style="display:inline">
                                 @csrf
-                                <button style="border:0px;background-color:red; color:white"> Logout </button>
+                                <button style="border:0px;background-color:red; color:white"> Déconnexion </button>
                             </form>
                         </li>
 
                         <!-- =============== SURVEYS ============== -->
-                        <h1> Surveys </h1>
+                        <h1> Sondages </h1>
+                        <p>Bienvenu {{auth()->user()->name}}</p>
+                        <p>Découvre ou recherche des sondages et vote !</p>
+                        @if(!empty($message))
+                            <p style="background-color: {{$color}}; color: white; padding:5px; border-radius: 5px"> {{$message}} </p>
+                        @endif
                         <ul style="list-style-type: none">
                             @for($i=0; $i<count($surveys); $i++)
                                 <p><br> </p>
