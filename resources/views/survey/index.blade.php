@@ -8,17 +8,23 @@
     <div style="text-align: center;">
         <div style="background-color:#d5d5d5; display: inline-block; border-radius: 10px;padding:20px;">
             <div style="display: inline-block; background-color: blue; padding: 10px; width: 20px; color: white; border-radius: 10px"><a style="color: white; text-decoration: none"href="{{route('home')}}">⮐</a></div>
-            <h1> Mes sondages</h1>
             @if(!empty($message))
                 <p style="background-color: {{$color}}; color: white; padding:5px; border-radius: 5px"> {{$message}} </p>
             @endif
+            @if(session('status'))
+                <p>{{session('status')}}</p>
+            @endif
+            <h1> Mes sondages</h1>
+            <p> Crée des sondage avec des réponses ou supprime des sondage deja existants.</p>
+            <p style="border: 2px dotted black"> {{count($surveys) > 0 ? count($surveys). " sondages crée : " : "Aucuns sondages crée" }}</p>
 
             <ul style="list-style-type: none;margin:0px; padding: 0px;">
                 @foreach($surveys as $survey)
                     <p> <br> </p>
-                    <li>{{ $survey -> question }}
+                    <li>Titre : {{ $survey -> question }}
                         <a href="{{route('survey.delete', $survey)}}"><button style="background-color:red; color:white; border:1px solid red; border-radius: 5px"> X </button></a>
                         <ul style="list-style-type: none; padding: 0px;">
+                            <p> {{count($survey->responses) > 0 ? count($survey->responses). " réponses créé : " : "aucuns réponses crée" }}</p>
                             @foreach($survey->responses as $response)
                                 <li> {{ $response->title }} </li>
                             @endforeach
