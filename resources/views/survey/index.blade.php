@@ -16,7 +16,7 @@
             @endif
             <h1> Mes sondages</h1>
             <p> Crée des sondage avec des réponses ou supprime des sondage deja existants.</p>
-            <p style="border: 2px dotted black"> {{count($surveys) > 0 ? count($surveys). " sondages crée : " : "Aucuns sondages crée" }}</p>
+            <p style="background-color: #306060; color: white; border-radius: 5px; display: inline-block; padding:5px;"> {{count($surveys) > 0 ? count($surveys). " sondages crée " : "Aucuns sondages existants" }}</p>
 
             <ul style="list-style-type: none;margin:0px; padding: 0px;">
                 @foreach($surveys as $survey)
@@ -24,7 +24,7 @@
                     <li>Titre : {{ $survey -> question }}
                         <a href="{{route('survey.delete', $survey)}}"><button style="background-color:red; color:white; border:1px solid red; border-radius: 5px"> X </button></a>
                         <ul style="list-style-type: none; padding: 0px;">
-                            <p> {{count($survey->responses) > 0 ? count($survey->responses). " réponses créé : " : "aucuns réponses crée" }}</p>
+                            <p style="background-color: #404280; color: white; border-radius: 5px; display: inline-block; padding:5px;"> {{count($survey->responses) > 0 ? count($survey->responses). " réponses existante " : "aucunes réponses existante" }}</p>
                             @foreach($survey->responses as $response)
                                 <li> {{ $response->title }} </li>
                             @endforeach
@@ -34,7 +34,7 @@
                                     <input type="hidden" name="surveys_id" value="{{$survey->id}}">
                                     <input type="hidden" name="count" value="{{0}}">
                                     <br>
-                                    <input type="text" placeholder="Create a new response" name="title">
+                                    <input type="text" placeholder="Nouvelle réponse" name="title">
                                     <button style="background-color:blue; color:white; border:1px solid blue; border-radius: 5px; font-size: 1em"> +</button>
                                 </form>
                             </li>
@@ -46,7 +46,7 @@
                     <p> <br> </p>
                     <form action="{{route('survey.store')}}" method="POST">
                         @csrf
-                        <input type="text" name="question" placeholder="Create a new survey">
+                        <input type="text" name="question" placeholder="Nouveau sondage">
                         <button style="background-color:green; color:white; border:1px solid green; border-radius: 5px; font-size: 1em">+</button>
                     </form>
                 </li>

@@ -42,7 +42,7 @@ class ResponsesController extends Controller
             'surveys_id' => $request->surveys_id,
         ]);
 
-        return to_route('survey.index', ["message"=>"Réponse au sondage ajouté!","color"=>"green"]);
+        return to_route('survey.index', ["message"=>"Réponse au sondage ajouté!","color"=>"blue"]);
     }
 
     /**

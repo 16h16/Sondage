@@ -72,14 +72,14 @@
                         <h1> Sondages </h1>
                         <p>Bienvenu {{auth()->user()->name}}</p>
                         <p>Découvre ou recherche des sondages et vote !</p>
-                    <p style="border: 2px dotted black"> {{count($surveys) > 0 ? count($surveys). " sondages crée : " : "Aucuns sondages crée" }}</p>
+                    <p style="background-color: #306060; color: white; border-radius: 5px; display: inline-block; padding:5px;"> {{count($surveys) > 0 ? count($surveys). " sondages existants " : "Aucuns sondages crée" }}</p>
                     @if(!empty($message))
                         <p style="background-color: {{$color}}; color: white; padding:5px; border-radius: 5px"> {{$message}} </p>
                     @endif
                         <ul style="list-style-type: none">
                             @for($i=0; $i<count($surveys); $i++)
                                 <p><br> </p>
-                                <li><h3>{{ $surveys[$i]-> question }}</li></h3>
+                                <li><h3>{{ $i+1 .". ".$surveys[$i]-> question }}</li></h3>
                                     <ul style="list-style-type: none">
                                         <br>
                                         @for($e = 0; $e < count($surveys[$i]->responses); $e++)
