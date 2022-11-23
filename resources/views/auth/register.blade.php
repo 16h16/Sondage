@@ -6,7 +6,7 @@
 
 @section('content')
     <div style="text-align: center;">
-        <div style="background-color:#d5d5d5; display: inline-block; border-radius: 10px;padding:20px;">
+        <div style="background-color:#d5d5d5; display: inline-block; border-radius: 10px;padding:50px;">
             <div style="display: inline-block; background-color: blue; padding: 10px; width: 20px; color: white; border-radius: 10px"><a style="color: white; text-decoration: none"href="{{route('home')}}">⮐</a></div>
             <h1> Inscription </h1>
             <p><strong>Inscris tes informations d'inscription</strong></p>
