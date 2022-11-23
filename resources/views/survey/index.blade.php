@@ -8,9 +8,6 @@
     <div style="text-align: center;">
         <div style="background-color:#d5d5d5; display: inline-block; border-radius: 10px;padding:50px;">
             <div style="display: inline-block; background-color: blue; padding: 10px; width: 20px; color: white; border-radius: 10px"><a style="color: white; text-decoration: none"href="{{route('home')}}">⮐</a></div>
-            @if(!empty($message))
-                <p style="background-color: {{$color}}; color: white; padding:5px; border-radius: 5px"> {{$message}} </p>
-            @endif
             @if(session('status'))
                 <p>{{session('status')}}</p>
             @endif
@@ -18,7 +15,9 @@
             <p><strong> Bienvenu dans ton gestionnaire de sondage!</strong></p>
             <p> Ici tu créer des sondage facilement en deux étapes</p>
             <hr>
-
+            @if(!empty($message))
+                <p style="background-color: {{$color}}; color: white; padding:5px; border-radius: 5px"> {{$message}} </p>
+            @endif
             <ul style="list-style-type: none;margin:0px; padding: 0px;">
                 <h2> 1. Créer ton sondage </h2>
                 <p> Crée ton nouveau sondage en ajoutant un titre. </p>

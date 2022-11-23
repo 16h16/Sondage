@@ -50,13 +50,13 @@
     @endif
     <div style="text-align:center">
         <div id="menu">
-            <div style="background-color:#7c7825; padding: 5px; border-radius: 10px;">
+            <div style="background-color:#9b963c; padding: 5px; border-radius: 10px;border:1px solid black">
                 <ul>
 
                             <li class="menu_puce" style="background-color: rgba(255,0,0,0);">
                                 <form style="display:inline; background-color: #4e5662; border-radius: 10px" action="{{route('home.search')}}" method="GET">
-                                    <input type="text" style="border-radius: 10px; border-right: 0px; border:3px solid #cccccc; background-color: #9b9b9b" name="survey_question">
-                                    <button style="background-color: rgba(25,255,0,0); border:0px; color: white"> Recherche </button>
+                                    <input type="text" style="border-radius: 10px; border-right: 0px; border:3px solid #4e5662; background-color: #9b9b9b" name="survey_question">
+                                    <button style="background-color: rgba(25,255,0,0); border:0px; color: white;"> Recherche </button>
                                 </form>
                             </li>
                         @auth
@@ -80,7 +80,7 @@
                 </ul>
             </div>
                 <!-- =============== SURVEYS ============== -->
-                <h1> Survey 🗳 </h1>
+                <h1> Bienvenu sur Survey 🗳 </h1>
                 @auth
                     <p> <strong>Hello {{auth()->user()->name}} ✌</strong></p>
                     <p>Découvre ou recherche des sondages et vote !</p>
@@ -89,7 +89,7 @@
                     <p>Découvre ou recherche des sondages et connecte toi pour voter !</p>
                 @endauth
                 <hr>
-                <h2>Tout les sondages </h2>
+                <h2>Tout les Sondages </h2>
                 <p style="background-color: #306060; color: white; border-radius: 5px; display: inline-block; padding:5px;"> {{count($surveys) > 0 ? count($surveys). " sondages existants " : "Aucuns sondages crée" }}</p>
                 @if(!empty($message))
                     <p style="background-color: {{$color}}; color: white; padding:5px; border-radius: 5px"> {{$message}} </p>
