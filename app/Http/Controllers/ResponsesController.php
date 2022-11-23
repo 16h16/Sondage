@@ -92,11 +92,17 @@ class ResponsesController extends Controller
 
     public function vote(Request $request)
     {
-        $response = Responses::findOrFail($request->id);
+        if(!empty(auth()->user()->name)){
+            $response = Responses::findOrFail($request->id);
 
-        $response-> update([
-            "count" => $response->count+1,
-        ]);
-        return to_route('vote', ["message"=>"Vote comptabilisé!","color"=>"green"]);
+            $response-> update([
+                "count" => $response->count+1,
+            ]);
+            return to_route('vote', ["message"=>"Vote comptabilisé!","color"=>"green"]);
+        }
+
+        return to_route('vote', ["message"=>"Tu dois être connecter pour voté!","color"=>"red"]);
+
+
 }
 }

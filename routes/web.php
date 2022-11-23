@@ -24,9 +24,9 @@ route::get('/reset-passwords', [HomeController::class, 'passwordReset'])->name('
 route::get('/surveys-search', [HomeController::class, 'search'])->name('home.search');
 
 // SURVEYS
-route::get('/surveys/{message?}/{color?}', [SurveysController::class, 'index'])->name('survey.index');
-route::post('/survey-store', [SurveysController::class, 'store'])->name('survey.store');
-route::get('/survey-delete/{survey}', [SurveysController::class,'destroy'])->name('survey.delete');
+route::get('/surveys/{message?}/{color?}', [SurveysController::class, 'index'])->middleware('auth')->name('survey.index');
+route::post('/survey-store', [SurveysController::class, 'store'])->middleware('auth')->name('survey.store');
+route::get('/survey-delete/{survey}', [SurveysController::class,'destroy'])->middleware('auth')->name('survey.delete');
 
 // RESPONSES
 route::post('/responses-new', [ResponsesController::class, 'store'])->name('response.store');
