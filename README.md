@@ -1,6 +1,6 @@
 ## Description
 
-**Sondage** is a web application allowing you to create surveys and participating in votes
+**Sondage** is a web application allowing you to create surveys and participating in votes.
 
 Users post surveys consisting of one topic and several answers. Once the survey is posted, it is accessible to site visitors and registered members can vote for one of the proposed responses. The numbers of votes obtained for each response are counted and displayed as a graph.
 
