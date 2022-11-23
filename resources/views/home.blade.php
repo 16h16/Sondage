@@ -117,6 +117,7 @@
                             </div>
                         @endfor
                     </ul>
+            <p>Copyright © 2022 <a style="color:blue; text-decoration: underline" href="https://linktr.ee/16h16" target="_blank">Hamza Echamlali</a></p>
         </div>
     </div>
 @endsection
