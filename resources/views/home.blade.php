@@ -102,11 +102,13 @@
                                 <ul style="list-style-type: none">
                                     @for($e = 0; $e < count($surveys[$i]->responses); $e++)
                                         <li> {{ $surveys[$i]->responses[$e]->title }}
-                                            <form style="display: inline-block" action="{{route('response.vote')}}" method="POST">
+                                            <form style="width: 100%; display: inline-block" action="{{route('response.vote')}}" method="POST">
                                                 @csrf
-                                                <input type="hidden" name="id" value="{{$surveys[$i]->responses[$e]->id}}">
-                                                <progress max="100" value="{{$pourcent[$i][$e]}}"></progress> {{$pourcent[$i][$e]}}% ({{$surveys[$i]->responses[$e]->count}} Votes )
-                                                <button style="background-color:green; color:white; border:1px solid green; border-radius: 5px"> + </button>
+                                                <input style="width: 15%;" type="hidden" name="id" value="{{$surveys[$i]->responses[$e]->id}}">
+                                                <progress style="width: 60%;" max="100" value="{{$pourcent[$i][$e]}}"></progress>
+                                                <p style="width: 25%; display: inline-block">{{$pourcent[$i][$e]}}% ({{$surveys[$i]->responses[$e]->count}} Votes)</p>
+                                                <button style="width: 5%; background-color:green; color:white; border:1px solid green; border-radius: 5px"> + </button>
+                                                <hr>
                                             </form>
                                         </li>
                                     @endfor
