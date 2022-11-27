@@ -1,4 +1,4 @@
-## Description
+# Description
 
 **Sondage** is a web application allowing you to create surveys and participating in votes.
 
